@@ -1,0 +1,26 @@
+%nav.navbar.navbar-static-top{:role => "navigation"}
+  / Sidebar toggle button
+  %a.sidebar-toggle{"data-toggle" => "offcanvas", :href => "#", :role => "button"}
+    %span.sr-only Toggle navigation
+  / Navbar Right Menu
+  .navbar-custom-menu
+    %ul.nav.navbar-nav
+      =# render "shared/notifications/preview"
+      %li.dropdown.messages-menu
+        %a.dropdown-toggle{href: "javascript", data: {toggle: "dropdown"}}
+          %i.fa.fa-envelope-o
+          %span.label.label-success
+            =# current_user.unread_messages.count
+      %li.dropdown.user.user-menu
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          = image_tag("user-placeholder.png", class: "user-image")
+          %span.hidden-xs=# current_user.full_name
+        %ul.dropdown-menu
+          %li.user-header
+            = image_tag("user-placeholder.png", class: "img-circle")
+            %p
+              = "mi nombre"
+          =# render "shared/profile_links", user: current_user
+      %li
+        %a{"data-toggle" => "control-sidebar", :href => "#"}
+          %i.fa.fa-gears

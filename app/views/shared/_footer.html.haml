@@ -1,0 +1,10 @@
+%footer.main-footer
+  / To the right
+  .pull-right.hidden-xs
+    Mejora con nosotros
+  / Default to the left
+  %strong
+    = "Copyright © #{Date.current.year}"
+    = succeed "." do
+      %a{:href => "/"} GAP
+  All rights reserved.

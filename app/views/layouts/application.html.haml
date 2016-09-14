@@ -1,0 +1,16 @@
+!!!
+%html
+  = render "shared/head"
+  %body.hold-transition.skin-blue.sidebar-mini
+    .wrapper
+      = render "shared/header"
+      = render "shared/sidebar"
+      .content-wrapper
+        = render "shared/flashes"
+        %section.content-header
+          = yield :content_header
+        %section.content.clearfix
+          = yield
+      = render "shared/footer"
+      = yield :styles
+      = yield :javascript

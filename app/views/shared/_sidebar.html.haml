@@ -1,0 +1,24 @@
+%aside.main-sidebar
+  %section.sidebar
+    =# render "shared/user_information"
+    .box-body
+      .form-group
+      = link_to "javascript:;", class: "btn btn-default btn-block" do
+        = "Buscar"
+        %i.fa.fa-fw.fa-search
+      -# select_tag :q, options_for_select(User.doctors.collect{ |u| [u.full_name, u.id] }), {id: :search, autocomplete: "off", include_blank: true, data: {url_to_redirect: doctors_path}, class: "form-control select2"}
+      -# %input.form-control{name: "q", placeholder: "Doctores...", type: "text", id: "search", autocomplete: "off"}/
+      -# %span.input-group-btn
+      -#   %button#search-btn.btn.btn-flat{:name => "search", :type => "submit"}
+      -#     %i.fa.fa-search
+    %ul.sidebar-menu
+      %li.header ACCIONES
+
+      %li.treeview{class: "active"}
+        = link_to "javascript:;" do
+          %i.fa.fa-weixin
+          %span Test
+
+
+- content_for :javascript do
+  =# javascript_include_tag ""
