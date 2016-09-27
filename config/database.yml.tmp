@@ -5,27 +5,25 @@
 #   gem 'sqlite3'
 #
 default: &default
-<<<<<<< HEAD:config/database.yml
-  adapter: sqlite3
-=======
   adapter: postgresql
   user: postgres
-  password: password
->>>>>>> e606404... Create nre db migrations for category and project:config/database.yml.tmp
+  password: "victorengap" 
   pool: 5
   timeout: 5000
+  host: localhost
+  encoding: unicode
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: gapnix_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: gapnix_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: gapnix_production
