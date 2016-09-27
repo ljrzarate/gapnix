@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :sessions, only: :index
   get "/auth/:provider/callback" => 'sessions#create'
   resource :dashboard, only: :show
+  resources :tasks, only: [:index,:create]
 end
