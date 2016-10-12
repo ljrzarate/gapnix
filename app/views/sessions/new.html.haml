@@ -1,1 +1,6 @@
+- if current_user
+  "Hola son #{current_user.email}"
+- else
+  "invitado"
 = link_to "Authenticate with Google!", user_google_oauth2_omniauth_authorize_path
+

@@ -7,6 +7,9 @@
     %ul.nav.navbar-nav
       =# render "shared/notifications/preview"
       %li.dropdown.messages-menu
+        = link_to('Logout', destroy_user_session_path, method: :get)
+
+      %li.dropdown.messages-menu
         %a.dropdown-toggle{href: "javascript", data: {toggle: "dropdown"}}
           %i.fa.fa-envelope-o
           %span.label.label-success
