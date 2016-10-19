@@ -1,0 +1,16 @@
+.container-fluid
+  .row
+    = form_for 'task' do |form|
+      .form-group
+        .form-group
+          .col-lg-4
+            = select(:project, :status, options_for_select([["canceled", "1"], ["pending", "2"], ["success", "3"]]))
+          .col-lg-4
+            = select(:category, :status, options_for_select([["canceled", "1"], ["pending", "2"], ["success", "3"]]))
+          .col-lg-4
+            = select(:billable, :status, options_for_select([["canceled", "1"], ["pending", "2"], ["success", "3"]]))
+        .form-group
+          = form.text_area 'Description'      
+        .form-group
+          = link_to('Tiempo manual', '#')
+          = form.submit "Submit", class: "btn btn-success"
