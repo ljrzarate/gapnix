@@ -19,10 +19,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
-<<<<<<< HEAD
-=======
 ./config/database.yml
 
 # Ignore VS folder
 /.vscode/*
->>>>>>> e606404... Create nre db migrations for category and project

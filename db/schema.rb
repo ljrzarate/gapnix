@@ -10,41 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160928003536) do
-=======
-ActiveRecord::Schema.define(version: 20160927230726) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_categories_on_user_id", using: :btree
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description"
-    t.integer  "project_id",  null: false
-    t.integer  "category_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
->>>>>>> e606404... Create nre db migrations for category and project
 
   create_table "tokens", force: :cascade do |t|
     t.string   "access_token"
@@ -67,14 +33,8 @@ ActiveRecord::Schema.define(version: 20160927230726) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-<<<<<<< HEAD
 end
-=======
-  add_foreign_key "categories", "users"
-  add_foreign_key "projects", "users"
-end
->>>>>>> e606404... Create nre db migrations for category and project
