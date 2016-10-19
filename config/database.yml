@@ -5,13 +5,10 @@
 #   gem 'sqlite3'
 #
 default: &default
-<<<<<<< HEAD:config/database.yml
   adapter: sqlite3
-=======
   adapter: postgresql
   user: postgres
   password: password
->>>>>>> e606404... Create nre db migrations for category and project:config/database.yml.tmp
   pool: 5
   timeout: 5000
 
