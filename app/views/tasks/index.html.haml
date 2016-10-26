@@ -1,16 +1,21 @@
 .container-fluid
   .row
-    = form_for 'task' do |form|
+    = form_for 'task', url: tasks_path, method: :post do |form|
       .form-group
         .form-group
           .col-lg-4
-            = select(:project, :status, options_for_select([["canceled", "1"], ["pending", "2"], ["success", "3"]]))
+            = form.select(:project_id, options_for_select(@categories.all.map{ |e| [e.name, e.id] }))
           .col-lg-4
-            = select(:category, :status, options_for_select([["canceled", "1"], ["pending", "2"], ["success", "3"]]))
+            = form.select(:category_id, options_for_select(@projects.all.map{ |e| [e.name, e.id] }))
           .col-lg-4
-            = select(:billable, :status, options_for_select([["canceled", "1"], ["pending", "2"], ["success", "3"]]))
+            = form.select(:billable, options_for_select([["billable", "1"], ["unbillable", "0"]]))
         .form-group
-          = form.text_area 'Description'      
+          = form.text_area :description
         .form-group
-          = link_to('Tiempo manual', '#')
+          = link_to('Tiempo manual', 'javascript:;', class: "js-link-hours")
+          = form.text_field :hours, class: "hidden js-hours-field"
           = form.submit "Submit", class: "btn btn-success"
+
+
+
+= javascript_include_tag 'tasks/index.js'
