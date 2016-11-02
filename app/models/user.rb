@@ -8,13 +8,14 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    user = User.where(email: data["email"]).first
-
-    if !user
-      generated_password = Devise.friendly_token.first(8)
-      user = User.new email: data["email"], password: generated_password, password_confirmation: generated_password
-      user.save
+    if data["email"].include? "growthaccelerationpartners.com"
+      user = User.where(email: data["email"]).first
+      if !user
+        generated_password = Devise.friendly_token.first(8)
+        user = User.new email: data["email"], password: generated_password, password_confirmation: generated_password, first_name:  data["first_name"], last_name: data["last_name"], profile_picture: data["image"]  
+        user.save
+      end
+      user
     end
-    user
   end         
 end
