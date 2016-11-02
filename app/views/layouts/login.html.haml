@@ -1,4 +1,9 @@
-.jumbotron
-  %h1 Welcome!
-  %p Authenticate via one of the social networks to get started.
-=yield
+!!!
+%html  
+  = render "shared/head"
+  %body.hold-transition.login-page
+    .login-box
+      .login-logo
+        %a{:href => "../../index2.html"}
+          %b> Admin GAPNIX
+      =yield
