@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => 'sessions#create'
   resource :dashboard, only: :show
   resources :tasks, only: [:index,:create]
+  namespace :time_reported do
+    resources :billables, only: :index
+  end
 end
