@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.for_user_in_this_week(current_user)
     @categories = Category.all
-    @projects = Project.all
+    @projects = Project.all    
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       flash[:notice] = "Task created!"
       redirect_to tasks_path
