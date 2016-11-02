@@ -1,1 +1,6 @@
-HOLA MUNDO 2
+%h1 My projects
+
+- if @projects.empty?
+    = render "users/projects/empty_state"
+- else
+    = render "users/projects/project_list", projects: @projects
