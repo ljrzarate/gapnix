@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20161102003522) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_categories_on_user_id", using: :btree
   end
 
   create_table "projects", force: :cascade do |t|
@@ -27,6 +29,8 @@ ActiveRecord::Schema.define(version: 20161102003522) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -65,4 +69,6 @@ ActiveRecord::Schema.define(version: 20161102003522) do
   end
 
   add_foreign_key "tasks", "users"
+  add_foreign_key "categories", "users"
+  add_foreign_key "projects", "users"
 end
