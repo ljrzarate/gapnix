@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20161102014628) do
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 
+  create_table "tokens", force: :cascade do |t|
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -62,13 +70,10 @@ ActiveRecord::Schema.define(version: 20161102014628) do
     t.string   "last_name"
     t.text     "profile_picture"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree    
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "tasks", "users"
   add_foreign_key "categories", "projects"
   add_foreign_key "projects", "users"
+  add_foreign_key "tasks", "users"
 end

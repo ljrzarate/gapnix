@@ -1,0 +1,10 @@
+.container-fluid
+  .row
+    - if flash[:notice]
+      .alert.alert-success
+        = flash[:notice]
+    - @projects.each do |project|
+      .col-md-4
+        project.name
+      .col-md-4
+        project.description
