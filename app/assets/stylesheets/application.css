@@ -15,6 +15,7 @@
  *= require bootstrap/bootstrap.css
  *= require adminlte/AdminLTE.css
  *= require adminlte/_all-skins.css
+ *= require tasks.css
  *= require_self
 
  */
