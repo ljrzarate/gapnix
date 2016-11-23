@@ -5,3 +5,5 @@
     = task.description
   .task-hours
     = task.hours
+  .task-actions
+    = link_to 'Destroy',  task,  method: :delete, data: { confirm: 'Are you sure?' }
