@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     @categories = Category.all
     @projects = Project.all    
   end
-
+ 
   def create
     @task = current_user.tasks.new(task_params)
     if @task.save
@@ -13,8 +13,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = current_user.tasks.find(params[:id]).destroy
+    if !@task.persisted?
+      flash[:notice] = "Yo como programa calidoso que soy, intente borrar esa tarea, que tu solicitaste borrar, y afortunadamente, lo logre!"
+      redirect_to tasks_path
+    end
+  end
+
   private 
     def task_params
-      params.require(:task).permit(:description, :billable, :hours, :category_id, :project_id)
+      params.require(:task).permit(:id, :description, :billable, :hours, :category_id, :project_id)
     end
 end
