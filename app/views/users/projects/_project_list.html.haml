@@ -1,0 +1,18 @@
+.container-fluid
+  .row
+    %table.table.table-striped
+      %thead
+        %tr
+          %td Project
+          %td Description
+          %td Actions
+      - @projects.each do |project|
+        %tr
+          %td
+            #{project.name}
+          %td
+            #{project.description}
+          %td
+            = link_to "Edit", edit_user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default'
+            &nbsp;
+            = link_to "Delete", user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default', method: 'delete'
