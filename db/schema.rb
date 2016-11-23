@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102003522) do
+ActiveRecord::Schema.define(version: 20161102014628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20161102003522) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "project_id"
+    t.index ["project_id"], name: "index_categories_on_project_id", using: :btree
   end
 
   create_table "projects", force: :cascade do |t|
@@ -27,18 +29,28 @@ ActiveRecord::Schema.define(version: 20161102003522) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
   end
 
   create_table "tasks", force: :cascade do |t|
     t.string   "description"
-    t.integer  "project_id",                  null: false
-    t.integer  "category_id",                 null: false
+    t.integer  "project_id"
+    t.integer  "category_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "billable",    default: false, null: false
     t.float    "hours",       default: 0.0,   null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,11 +70,10 @@ ActiveRecord::Schema.define(version: 20161102003522) do
     t.string   "last_name"
     t.text     "profile_picture"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree    
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "categories", "projects"
+  add_foreign_key "projects", "users"
   add_foreign_key "tasks", "users"
 end
