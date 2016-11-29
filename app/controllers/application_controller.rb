@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   end  
 
   def billable_hours
-    @total_billable_hours = Task.billable_hours(current_user, true)
+    @total_billable_hours = Task.billable_hours(current_user, true) if current_user
   end
 end

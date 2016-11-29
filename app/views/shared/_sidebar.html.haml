@@ -1,6 +1,13 @@
 %aside.main-sidebar
   %section.sidebar
     =# render "shared/user_information"
+    .user-panel
+      .pull-left.image
+        %p
+          = image_tag 'clock.png', alt: 'billable', height: '50px', width: '50px', class: ''
+      .pull-left.info.text-center.h1
+        %p
+          = @total_billable_hours      
     .box-body
       .form-group
       = link_to "javascript:;", class: "btn btn-default btn-block" do
@@ -13,9 +20,7 @@
       -#     %i.fa.fa-search
     %ul.sidebar-menu
       %li.header ACCIONES
-
       %li.treeview{class: "active"}
-        = link_to tasks_path do
           %i.fa.fa-fw.fa-tasks
           %span Tasks
 
