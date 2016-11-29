@@ -13,13 +13,13 @@ class Task < ApplicationRecord
   validates_length_of :description, minimun: 50, maximum: 500 
 
   # Scopes
-  scope :current_user, ->(user) {  where(user_id: user.id) }
-  scope :current_weekly, -> {  where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week) }
-  scope :weekly_current_task, ->(user) { current_user(user).current_weekly }
+  #scope :current_user, ->(user) {  where(user_id: user.id) }
+  scope :current_weekly, ->(user_id) {  where("created_at >= ? AND created_at <= ? AND user_id = ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week, user_id) }
+  scope :weekly_current_task, ->(user) { current_weekly(user.id) }
 
   # Class methods
   def self.billable_hours(user, billable)
-    current_user(user).current_weekly.is_billable?(billable).sum(:hours)
+    current_weekly(user.id).is_billable?(billable).sum(:hours)
   end
 
   def self.is_billable? value
