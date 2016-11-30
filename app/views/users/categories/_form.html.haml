@@ -1,0 +1,11 @@
+.container
+  .row
+    = form_for category, url: url, method: method, html: {class: "form-horizontal center"} do |form|
+      .form-group.col-md-12
+        = form.label :name, "Category:"
+        = form.text_field :name, class: "form-control"
+      .form-group.col-md-12
+        = form.label :description, "Description:"
+        = form.text_area :description, size: "60x12", class: "form-control"
+      .form-group.col-md-12
+        = form.submit "Save", class: "btn btn-default"
