@@ -1,8 +1,8 @@
 %h1 My projects
 %br/
-#{link_to "Create new project", new_user_project_path, class: 'btn btn-default'}
 
 - if @projects.empty?
   = render "users/projects/empty_state"
 - else
+  #{link_to "Create new project", new_user_project_path, class: 'btn btn-default'}
   = render "users/projects/project_list", projects: @projects
