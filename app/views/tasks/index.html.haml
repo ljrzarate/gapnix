@@ -15,9 +15,15 @@
           = link_to('Tiempo manual', 'javascript:;', class: "js-link-hours")
           = form.text_field :hours, class: "hidden js-hours-field"
           = form.submit "Submit", class: "btn btn-success"
-  .row
-    %ul
-      = render partial: "task", collection: @tasks
+    .row
+      %table.table.table-striped
+        %thead
+          %tbody
+            %tr
+              %td Project
+              %td Description
+              %td Actions
+            = render partial: "task", collection: @tasks
         
 
 
