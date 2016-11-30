@@ -1,9 +1,9 @@
-%li 
-  .task-time 
+%tr
+  %td
     = task.created_at
-  .task-description
+  %td
     = task.description
-  .task-hours
+  %td  
     = task.hours
-  .task-actions
-    = link_to 'Destroy',  task,  method: :delete, data: { confirm: 'Are you sure?' }
+  %td
+    = link_to 'Destroy',  task, class: 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' }
