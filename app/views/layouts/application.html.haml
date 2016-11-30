@@ -5,7 +5,7 @@
     .wrapper
       = render "shared/header"
       = render "shared/sidebar"
-      .content-wrapper
+      .content-wrapper{style: "min-height: 890px;"}
         = render "shared/flashes"
         %section.content-header
           = yield :content_header
