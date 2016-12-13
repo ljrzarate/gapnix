@@ -1,0 +1,23 @@
+!!!
+%html
+  %body.hold-transition.login-page
+    .login-box-body
+      %p.login-box-msg Sign in to start your session
+      .social-auth-links.text-center
+        %a.btn.btn-block.btn-social.btn-google.btn-flat{:href => user_google_oauth2_omniauth_authorize_path}
+          %i.fa.fa-google-plus
+          Sign in using
+          Google+ 
+        = if @error = true 
+          .box.box-default
+            .box-body
+              - if flash[:error]
+                .alert.alert-danger.alert-dismissible
+                  %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
+                  %h4
+                  %i.icon.fa.fa-ban
+                  Alert!
+                  = flash[:error]
+                
+                
+
