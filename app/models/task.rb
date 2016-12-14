@@ -31,8 +31,12 @@ class Task < ApplicationRecord
 
 
   # Class methods
-  def self.billable_hours(user, billable)
+  def self.billable_hours(user, billable = true)
     current_weekly(user.id).is_billable?(billable).sum(:hours)
+  end
+
+  def self.unibillable_hours(user)
+    billable_hours(user, false)
   end
 
   def self.is_billable? value
