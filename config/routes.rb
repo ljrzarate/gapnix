@@ -13,4 +13,7 @@ Rails.application.routes.draw do
       resources :categories, controller: "users/categories"
     end
   end
+  namespace :time_reported do
+    resources :billables, only: :index
+  end
 end
