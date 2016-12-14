@@ -24,8 +24,22 @@
           = form.text_field :hours, class: "hidden js-hours-field"
         .col-md-3
           = form.submit "Submit", class: "btn btn-success btn-lg pull-right btn-block"  
-.row
-  %ul
-    = render partial: "task", collection: @tasks
+.content
+  .row
+    .box
+      .box-header
+        %h3.box-title
+          List of Tasks
+          .box-tools
+      .box-body.table-responsive.no-padding
+        %table.table.table-hover
+          %tbody
+            %tr
+              %th Created
+              %th Description
+              %th Hours
+            = render partial: "task", collection: @tasks
+      .box-footer.clearfix
+        = will_paginate @tasks, renderer: BootstrapPagination::Rails
 
 = javascript_include_tag 'tasks/index.js'

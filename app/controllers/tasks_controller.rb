@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.weekly_current_task(current_user)
+    @tasks = Task.weekly_current_task(current_user).paginate(page: params[:page])
     @categories = Category.all
     @projects = Project.all   
      

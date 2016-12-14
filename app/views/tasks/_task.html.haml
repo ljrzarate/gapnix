@@ -1,7 +1,4 @@
-%li 
-  .task-time 
-    = task.created_at
-  .task-description
-    = task.description
-  .task-hours
-    = task.hours
+%tr
+  %td= task.created_at
+  %td= task.description
+  %td= task.hours

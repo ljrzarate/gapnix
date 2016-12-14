@@ -32,6 +32,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'will_paginate-bootstrap'
 
 gem 'pg'
 
