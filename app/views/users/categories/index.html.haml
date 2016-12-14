@@ -1,8 +1,8 @@
-%h1 #{@project.name} Categories
+%h1= "#{@project.name} #{I18n.t('categories.title')}" 
 %br/
 
 - if @categories.empty?
   = render "users/categories/empty_state"
 - else
-  #{link_to "Create new category", new_user_project_category_path, class: 'btn btn-default'}
+  = link_to I18n.t("categories.create_new_button"), new_user_project_category_path, class: 'btn btn-default'
   = render "users/categories/category_list", categories: @categories

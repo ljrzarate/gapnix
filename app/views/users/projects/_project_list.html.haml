@@ -9,12 +9,12 @@
       - @projects.each do |project|
         %tr
           %td
-            #{project.name}
+            = project.name
           %td
-            #{project.description}
+            = project.description
           %td
             = link_to "", edit_user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default fa fa-edit'
             &nbsp;
             = link_to "", user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default fa fa-trash', method: 'delete'
             &nbsp;
-            = link_to "Categories", user_project_categories_path(project_id: project, user_id: current_user.id), class: 'btn btn-default'
+            = link_to I18n.t("projects.categories_button"), user_project_categories_path(project_id: project, user_id: current_user.id), class: 'btn btn-default'
