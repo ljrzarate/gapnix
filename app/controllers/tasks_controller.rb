@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.for_user_in_this_week(current_user)
+    @tasks = Task.weekly_current_task(current_user)
     @categories = Category.all
-    @projects = Project.all    
+    @projects = Project.all   
+     
   end
 
   def create

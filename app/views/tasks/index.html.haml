@@ -1,26 +1,31 @@
-.container-fluid
-  .row
-    = form_for 'task', url: tasks_path, method: :post do |form|
+.box.box-primary
+  .box-header.with-border
+    %h1.box-title
+      Tasks
+    = form_for 'task', url: tasks_path, method: :post, html: {class: "form-horizontal center"} do |form|
       .form-group
-        .form-group
-          .col-lg-4
-            = form.select(:project_id, options_for_select(@categories.all.map{ |e| [e.name, e.id] }))
-          .col-lg-4
-            = form.select(:category_id, options_for_select(@projects.all.map{ |e| [e.name, e.id] }))
-          .col-lg-4
-            = form.select(:billable, options_for_select([["billable", "1"], ["unbillable", "0"]]))
-        .form-group
-          = form.text_area :description
-        .form-group
+        .col-md-3.col-md-offset-1
+          = form.label :category_id, "Category" 
+          = form.select(:category_id, options_for_select(@categories.all.map{ |e| [e.name, e.id] }), {}, {class: "form-control"})
+        .col-md-3
+          = form.label :project_id, "Project" 
+          = form.select(:project_id, options_for_select(@projects.all.map{ |e| [e.name, e.id] }), {}, {class: "form-control"})
+        .col-md-3
+          = form.label :billable, "Is billable" 
+          = form.select(:billable, options_for_select([["billable", "1"], ["unbillable", "0"]]), {}, {class: "form-control"})
+      .form-group
+        .col-md-9.col-md-offset-1
+          = form.label :description, "Description"
+          = form.text_area :description, size: "40x10", class: "form-control" 
+      .form-group
+        .col-md-1.col-md-offset-1
           = link_to('Tiempo manual', 'javascript:;', class: "js-link-hours")
+        .col-md-5
           = form.text_field :hours, class: "hidden js-hours-field"
-          = form.submit "Submit", class: "btn btn-success"
-  .row
-    %ul
-      = render partial: "task", collection: @tasks
-        
-
-
-
+        .col-md-3
+          = form.submit "Submit", class: "btn btn-success btn-lg pull-right btn-block"  
+.row
+  %ul
+    = render partial: "task", collection: @tasks
 
 = javascript_include_tag 'tasks/index.js'
