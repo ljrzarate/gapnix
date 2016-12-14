@@ -1,8 +1,8 @@
-%h1 My Categories
+%h1 #{@project.name} Categories
 %br/
 
 - if @categories.empty?
   = render "users/categories/empty_state"
 - else
-  #{link_to "Create new category", new_user_project_path, class: 'btn btn-default'}
+  #{link_to "Create new category", new_user_project_category_path, class: 'btn btn-default'}
   = render "users/categories/category_list", categories: @categories

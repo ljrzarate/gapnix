@@ -13,6 +13,8 @@
           %td
             #{project.description}
           %td
-            = link_to "Edit", edit_user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default'
+            = link_to "", edit_user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default fa fa-edit'
             &nbsp;
-            = link_to "Delete", user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default', method: 'delete'
+            = link_to "", user_project_path(id: project, user_id: current_user.id), class: 'btn btn-default fa fa-trash', method: 'delete'
+            &nbsp;
+            = link_to "Categories", user_project_categories_path(project_id: project, user_id: current_user.id), class: 'btn btn-default'
