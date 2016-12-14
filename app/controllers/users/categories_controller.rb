@@ -1,7 +1,8 @@
 class Users::CategoriesController < ApplicationController
 
     def index
-        @categories = current_user.projects.find(params[:project_id]).categories
+        @project = current_user.projects.find(params[:project_id])
+        @categories = @project.categories
     end
 
     def new
@@ -9,12 +10,12 @@ class Users::CategoriesController < ApplicationController
     end
 
     def create
-        @category = current_user.projects.new(category_params)
+        @category = current_user.projects.find(params[:project_id]).categories.new(category_params)
         
         if @category.valid?
           @category.save
           flash.now[:notice] = "Category created!"
-          redirect_to user_projects_path
+          redirect_to user_project_categories_path
         else
           flash[:alert] = @category.errors.full_messages.to_sentence
           render :new
@@ -32,7 +33,7 @@ class Users::CategoriesController < ApplicationController
         if @category.valid?
           @category.save
           flash.now[:notice] = "Category updated!"
-          redirect_to user_projects_path
+          redirect_to user_project_categories_path
         else
           flash[:alert] = @category.errors.full_messages.to_sentence
           render :edit
@@ -42,7 +43,7 @@ class Users::CategoriesController < ApplicationController
     def destroy
         current_user.projects.find(params[:project_id]).categories.find(params[:id]).destroy
         flash[:success] = "Category deleted"
-        redirect_to user_projects_path
+        redirect_to user_project_categories_path
     end
 
     private 

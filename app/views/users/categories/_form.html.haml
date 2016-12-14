@@ -1,11 +1,15 @@
-.container
-  .row
-    = form_for category, url: url, method: method, html: {class: "form-horizontal center"} do |form|
-      .form-group.col-md-12
-        = form.label :name, "Category:"
-        = form.text_field :name, class: "form-control"
-      .form-group.col-md-12
-        = form.label :description, "Description:"
-        = form.text_area :description, size: "60x12", class: "form-control"
-      .form-group.col-md-12
-        = form.submit "Save", class: "btn btn-default"
+.box.box-primary
+  .box-header.with-border
+    %h1.box-title
+      = "#{category.new_record? ? 'New' : 'Edit'} Category"
+
+    = form_for category, url: url, method: method, html: {class: "form-horizontal center", role: "form"} do |form|
+      .box-body
+        .form-group.col-md-12
+          = form.label :name, "Category:"
+          = form.text_field :name, class: "form-control"
+        .form-group.col-md-12
+          = form.label :description, "Description:"
+          = form.text_area :description, size: "60x12", class: "form-control"
+        .form-group.col-md-12
+          = form.submit "Save", class: "btn btn-success btn-lg pull-right"
