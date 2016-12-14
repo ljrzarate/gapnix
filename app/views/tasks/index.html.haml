@@ -40,6 +40,6 @@
               %th Hours
             = render partial: "task", collection: @tasks
       .box-footer.clearfix
-        = will_paginate @tasks, renderer: BootstrapPagination::Rails
+        = render "shared/pagination", list: @tasks
 
 = javascript_include_tag 'tasks/index.js'
