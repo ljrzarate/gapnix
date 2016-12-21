@@ -1,18 +1,18 @@
-.container-fluid
+.content
   .row
-    %table.table.table-striped
-      %thead
-        %tr
-          %td Category
-          %td Description
-          %td Actions
-      - @categories.each do |category|
-        %tr
-          %td
-            = category.name
-          %td
-            = category.description
-          %td
-            = link_to "", edit_user_project_category_path(id: category, project_id:category.project_id, user_id: current_user.id), class: 'btn btn-default fa fa-edit'
-            &nbsp;
-            = link_to "", user_project_category_path(id: category, project_id:category.project_id, user_id: current_user.id), class: 'btn btn-default fa fa-trash', method: 'delete'
+    .box
+      .box-header
+        %h3.box-title
+          = "#{@project.name} #{I18n.t('categories.title')} "
+          = link_to I18n.t('categories.create_new_button'), new_user_project_category_path, class: 'btn btn-default'
+          .box-tools
+      .box-body.table-responsive.no-padding
+        %table.table.table-hover
+          %tbody
+            %tr
+              %th Category
+              %th Description
+              %th Actions
+            = render partial: "category", collection: @categories
+      .box-footer.clearfix
+        = render "shared/pagination", list: @categories

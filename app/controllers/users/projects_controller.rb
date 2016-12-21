@@ -1,7 +1,7 @@
 class Users::ProjectsController < ApplicationController
 
     def index
-        @projects = current_user.projects      
+        @projects = current_user.projects.paginate(page: params[:page])
     end
 
     def new
@@ -13,7 +13,7 @@ class Users::ProjectsController < ApplicationController
         
         if @project.valid?
           @project.save
-          flash.now[:notice] = "Project created!"
+          flash[:notice] = "Project created!"
           redirect_to user_projects_path
         else
           flash[:alert] = @project.errors.full_messages.to_sentence
@@ -31,7 +31,7 @@ class Users::ProjectsController < ApplicationController
         
         if @project.valid?
           @project.save
-          flash.now[:notice] = "Project updated!"
+          flash[:notice] = "Project updated!"
           redirect_to user_projects_path
         else
           flash[:alert] = @project.errors.full_messages.to_sentence
@@ -41,7 +41,7 @@ class Users::ProjectsController < ApplicationController
 
     def destroy
         Project.find(params[:id]).destroy
-        flash[:success] = "Project deleted"
+        flash[:notice] = "Project deleted"
         redirect_to user_projects_path
     end
 

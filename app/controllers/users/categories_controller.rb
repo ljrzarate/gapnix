@@ -2,7 +2,7 @@ class Users::CategoriesController < ApplicationController
 
     def index
         @project = current_user.projects.find(params[:project_id])
-        @categories = @project.categories
+        @categories = @project.categories.paginate(page: params[:page])
     end
 
     def new
@@ -14,7 +14,7 @@ class Users::CategoriesController < ApplicationController
         
         if @category.valid?
           @category.save
-          flash.now[:notice] = "Category created!"
+          flash[:notice] = "Category created!"
           redirect_to user_project_categories_path
         else
           flash[:alert] = @category.errors.full_messages.to_sentence
@@ -32,7 +32,7 @@ class Users::CategoriesController < ApplicationController
         
         if @category.valid?
           @category.save
-          flash.now[:notice] = "Category updated!"
+          flash[:notice] = "Category updated!"
           redirect_to user_project_categories_path
         else
           flash[:alert] = @category.errors.full_messages.to_sentence
@@ -42,7 +42,7 @@ class Users::CategoriesController < ApplicationController
 
     def destroy
         current_user.projects.find(params[:project_id]).categories.find(params[:id]).destroy
-        flash[:success] = "Category deleted"
+        flash[:notice] = "Category deleted"
         redirect_to user_project_categories_path
     end
 
