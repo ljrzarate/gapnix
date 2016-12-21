@@ -1,8 +1,8 @@
-%h1 My projects
+%h1= I18n.t("projects.title")
 %br/
-#{link_to "Create new project", new_user_project_path, class: 'btn btn-default'}
 
 - if @projects.empty?
   = render "users/projects/empty_state"
 - else
+  = link_to I18n.t("projects.create_new_button"), new_user_project_path, class: 'btn btn-default'
   = render "users/projects/project_list", projects: @projects
