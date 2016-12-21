@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   namespace :time_reported do
     resources :billables, only: :index
   end
+  namespace :reports do
+    resource :weekly_reports, only: :show
+  end
 end

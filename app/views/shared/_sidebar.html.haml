@@ -27,7 +27,11 @@
 
         = link_to user_projects_path(current_user) do
           %i.fa.fa-fw.fa-book
-          %span Projects
+          %span Projects  
+
+        = link_to reports_weekly_reports_path do
+          %i.fa.fa-fw.fa-bar-chart
+          %span Reports
 
 
 - content_for :javascript do
