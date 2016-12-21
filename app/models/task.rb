@@ -17,17 +17,17 @@ class Task < ApplicationRecord
   scope :current_weekly, ->(user_id) {  where("created_at >= ? AND created_at <= ? AND user_id = ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week, user_id) }
   scope :weekly_current_task, ->(user) { current_weekly(user.id) }
 
-    def self.get_current_week_tasks
-      where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week)
-    end
+  def self.get_current_week_tasks
+    where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week)
+  end
 
-    validates :description, presence: true
-    validates_length_of :description, minimun: 50, maximum: 500 
+  validates :description, presence: true
+  validates_length_of :description, minimun: 50, maximum: 500 
 
 
-    def self.get_current_week_tasks
-      where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week)
-    end
+  def self.get_current_week_tasks
+    where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week)
+  end
 
 
   # Class methods

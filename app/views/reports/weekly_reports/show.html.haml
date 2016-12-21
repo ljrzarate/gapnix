@@ -1,0 +1,18 @@
+.container-fluid
+ .row
+  .box
+   .box-header
+    %h3.box-title
+     Report of the week - From: #{Date.current.at_beginning_of_week} , To: #{Date.current.at_end_of_week}
+     .box-tools
+   .box-body.table-responsive.no-padding
+    %table.table.table-hover
+     %tbody
+      %tr
+       %td Project
+       %td Description
+       %td Duration
+       %td Billable
+      = render partial: "reports/weekly_reports/task", collection: @tasks
+   .box-footer.clearfix
+    = render "shared/pagination", list: @tasks
