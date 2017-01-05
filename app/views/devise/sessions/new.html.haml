@@ -8,7 +8,7 @@
           %i.fa.fa-google-plus
           Sign in using
           Google+ 
-        = if @error = true 
+        - if @error 
           .box.box-default
             .box-body
               - if flash[:error]
