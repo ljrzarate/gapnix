@@ -1,4 +1,7 @@
 %tr
-  %td= task.created_at
+  %td{title: task.created_at_date}= task.created_at_day_name
+  %td= task.project.name
+  %td= task.category.name
   %td= task.description
-  %td= task.hours
+  %td.js-hour-cell
+    = task.hours

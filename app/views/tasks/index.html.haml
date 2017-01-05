@@ -21,25 +21,28 @@
         .col-md-1.col-md-offset-1
           = link_to('Tiempo manual', 'javascript:;', class: "js-link-hours")
         .col-md-5
-          = form.text_field :hours, class: "hidden js-hours-field"
+          = form.text_field :text_hours, class: "hidden js-hours-field"
+          = form.text_field :hours, class: "hidden js-hours-hidden-field"
         .col-md-3
-          = form.submit "Submit", class: "btn btn-success btn-lg pull-right btn-block"  
+          = form.submit "Submit", class: "btn btn-success btn-lg pull-right btn-block"
 .content
   .row
     .box
       .box-header
         %h3.box-title
-          List of Tasks
+          = "List of Tasks #{get_begin_end_week_format}"
           .box-tools
       .box-body.table-responsive.no-padding
         %table.table.table-hover
           %tbody
             %tr
               %th Created
+              %th Project
+              %th Category
               %th Description
               %th Hours
             = render partial: "task", collection: @tasks
       .box-footer.clearfix
         = render "shared/pagination", list: @tasks
 
-= javascript_include_tag 'tasks/index.js'
+= javascript_include_tag 'tasks/index.js' 

@@ -33,4 +33,12 @@ class Task < ApplicationRecord
   def self.get_current_week_tasks
     where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week)
   end
+  
+  def created_at_day_name
+    self.created_at.strftime("%A")
+  end
+
+  def created_at_date
+    self.created_at.strftime("%d-%m-%Y")
+  end
 end

@@ -62,3 +62,15 @@ function filterTimeFormat(time) {
 
 	return time;
 }
+
+function convertFloatToTimeString(time) {
+	currentHours = Math.floor( time );
+	currentMinutes = time % 1 * 60;
+	currentMinutes = Math.round(currentMinutes);	
+
+	if(currentMinutes <= 9) {
+		currentMinutes = "0" + currentMinutes;
+	}
+
+	return currentHours + ":" + currentMinutes;
+}
