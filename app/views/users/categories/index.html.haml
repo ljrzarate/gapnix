@@ -1,1 +1,4 @@
-HOLA MUNDO
+- if @categories.empty?
+  = render "users/categories/empty_state"
+- else
+  = render "users/categories/category_list", categories: @categories
