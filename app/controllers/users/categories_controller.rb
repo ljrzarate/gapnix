@@ -1,4 +1,5 @@
 class Users::CategoriesController < ApplicationController
+    before_action :get_category, only: [:update, :new]
 
     def index
         @project = current_user.projects.find(params[:project_id])
@@ -11,7 +12,7 @@ class Users::CategoriesController < ApplicationController
 
     def create
         @category = current_user.projects.find(params[:project_id]).categories.new(category_params)
-        
+
         if @category.valid?
           @category.save
           flash[:notice] = "Category created!"
@@ -23,13 +24,10 @@ class Users::CategoriesController < ApplicationController
     end
 
     def edit
-        @category = current_user.projects.find(params[:project_id]).categories.find(params[:id])
     end
 
     def update
-        @category = current_user.projects.find(params[:project_id]).categories.find(params[:id])
         @category.attributes = category_params
-        
         if @category.valid?
           @category.save
           flash[:notice] = "Category updated!"
@@ -46,8 +44,12 @@ class Users::CategoriesController < ApplicationController
         redirect_to user_project_categories_path
     end
 
-    private 
-        def category_params
-            params.require(:category).permit(:name, :description)
-        end
+    private
+    def category_params
+      params.require(:category).permit(:name, :description)
+    end
+
+    def get_category
+      @category ||= current_user.projects.find(params[:project_id]).categories.find(params[:id])
+    end
 end
