@@ -15,3 +15,13 @@ Gapnix.helpers.filterTimeFormat = function(time){
     return filterTimeFormat(time);
 }
 
+on_show_time = function(){
+  var time_field = $(".js-hour-cell");        
+  time_field.each(function() {
+    $(this).html(Gapnix.helpers.changeHourFormat($(this).html()));            
+  });
+}
+
+$( document ).ready(function() {
+  on_show_time();
+});

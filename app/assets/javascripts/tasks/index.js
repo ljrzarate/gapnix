@@ -25,17 +25,9 @@ Gapnix.views.tasksIndex = (function () {
         });        
     }
 
-    function on_show_time(){
-        var time_field = $(".js-hour-cell");        
-        time_field.each(function() {
-            $(this).html(Gapnix.helpers.changeHourFormat($(this).html()));            
-        });
-    }
-
     function init(){
       change_time_type();
       on_changed_time();
-      on_show_time();
     }
 
     return{
