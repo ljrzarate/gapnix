@@ -1,5 +1,5 @@
 class Users::CategoriesController < ApplicationController
-    before_action :get_category, only: [:update, :new]
+    before_action :get_category, only: [:update]
 
     add_breadcrumb I18n.t("projects.title"), :user_projects_path
     add_breadcrumb I18n.t("categories.title"), :user_project_categories_path
