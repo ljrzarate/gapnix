@@ -1,16 +1,12 @@
 class Users::CategoriesController < ApplicationController
     before_action :get_category, only: [:update, :new]
-    
 
-    # add_breadcrumb "Home", :root_path
     add_breadcrumb I18n.t("projects.title"), :user_projects_path
     add_breadcrumb I18n.t("categories.title"), :user_project_categories_path
 
     def index
         @project = current_user.projects.find(params[:project_id])
         @categories = @project.categories.paginate(page: params[:page])
-
-        
     end
 
     def new

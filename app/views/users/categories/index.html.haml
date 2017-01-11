@@ -1,5 +1,4 @@
-.breadcrumb
-  = render_breadcrumbs
+= render "shared/breadcrumb" 
 - if @categories.empty?
   = render "users/categories/empty_state"
 - else

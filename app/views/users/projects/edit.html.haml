@@ -1,3 +1,2 @@
-.breadcrumb
-  = render_breadcrumbs
+= render "shared/breadcrumb" 
 = render "users/projects/form", project: @project, url: user_project_path, method: :put
