@@ -1,11 +1,15 @@
 class Users::ProjectsController < ApplicationController
 
+    # add_breadcrumb "Home", :root_path
+    add_breadcrumb I18n.t("projects.title"), :user_projects_path
+
     def index
         @projects = current_user.projects.paginate(page: params[:page])
     end
 
     def new
         @project = Project.new
+        add_breadcrumb I18n.t("projects.new"), :new_user_project_path
     end
 
     def create
@@ -23,6 +27,7 @@ class Users::ProjectsController < ApplicationController
 
     def edit
         @project = Project.find(params[:id])
+        add_breadcrumb I18n.t("projects.edit"), :edit_user_project_path
     end
 
     def update

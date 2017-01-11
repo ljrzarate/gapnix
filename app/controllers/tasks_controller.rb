@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
+  
+  add_breadcrumb I18n.t("tasks.title"), :tasks_path
+
   def index
     @tasks = Task.weekly_current_task(current_user).paginate(page: params[:page])
     @categories = Category.all
     @projects = Project.all   
-     
   end
 
   def create

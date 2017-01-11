@@ -4,7 +4,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
     
     if @user && @user.persisted?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
+      flash[:notice] = I18n.t "home_title", :kind => "Google"
       sign_in(:user, @user, { bypass: true })
       redirect_to dashboard_path
     else

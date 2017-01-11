@@ -3,3 +3,6 @@ en:
     create_new_button: "Create new project"
     categories_button: "Categories"
     title: "My Projects"
+    new: "New"
+    edit: "Edit"
+    
