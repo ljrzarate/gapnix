@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :billable_hours
 
+  add_breadcrumb I18n.t("home_title"), :root_path
+
   layout :layout_by_resource
 
   def layout_by_resource

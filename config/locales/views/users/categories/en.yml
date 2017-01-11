@@ -2,3 +2,4 @@ en:
   categories:
     create_new_button: "Create new category"
     title: "Categories"
+    new: "New"
