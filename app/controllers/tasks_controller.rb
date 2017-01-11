@@ -9,10 +9,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    binding.pry
     @task = current_user.tasks.new(task_params)
     if @task.save
-      flash[:notice] = "Task created!"      
+      flash[:notice] = I18n.t("tasks.created")
     else
       flash[:alert] = @task.errors.full_messages.to_sentence
     end

@@ -17,7 +17,7 @@ class Users::ProjectsController < ApplicationController
         
         if @project.valid?
           @project.save
-          flash[:notice] = "Project created!"
+          flash[:notice] = I18n.t("projects.created")
           redirect_to user_projects_path
         else
           flash[:alert] = @project.errors.full_messages.to_sentence
@@ -36,7 +36,7 @@ class Users::ProjectsController < ApplicationController
         
         if @project.valid?
           @project.save
-          flash[:notice] = "Project updated!"
+          flash[:notice] = I18n.t("projects.updated")
           redirect_to user_projects_path
         else
           flash[:alert] = @project.errors.full_messages.to_sentence
@@ -46,7 +46,7 @@ class Users::ProjectsController < ApplicationController
 
     def destroy
         Project.find(params[:id]).destroy
-        flash[:notice] = "Project deleted"
+        flash[:notice] = I18n.t("projects.deleted")
         redirect_to user_projects_path
     end
 

@@ -19,7 +19,7 @@ class Users::CategoriesController < ApplicationController
 
         if @category.valid?
           @category.save
-          flash[:notice] = "Category created!"
+          flash[:notice] = I18n.t("categories.created")
           redirect_to user_project_categories_path
         else
           flash[:alert] = @category.errors.full_messages.to_sentence
@@ -34,7 +34,7 @@ class Users::CategoriesController < ApplicationController
         @category.attributes = category_params
         if @category.valid?
           @category.save
-          flash[:notice] = "Category updated!"
+          flash[:notice] = I18n.t("categories.updated")
           redirect_to user_project_categories_path
         else
           flash[:alert] = @category.errors.full_messages.to_sentence
@@ -44,7 +44,7 @@ class Users::CategoriesController < ApplicationController
 
     def destroy
         current_user.projects.find(params[:project_id]).categories.find(params[:id]).destroy
-        flash[:notice] = "Category deleted"
+        flash[:notice] = I18n.t("categories.deleted")
         redirect_to user_project_categories_path
     end
 

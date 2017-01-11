@@ -6,3 +6,14 @@ en:
     new: "New"
     edit: "Edit"
     
+    created: "Project created!"
+    updated: "Project updated!"
+    deleted: "Project deleted"
+  tasks:
+    created: "Task created!"
+  categories:
+    created: "Category created!"
+    updated: "Category updated!"
+    deleted: "Category deleted"
+  auth: 
+    email_not_authorized: "Sorry, we just accept GrowthAccelerationPartner members, please try again with a GAP email".
