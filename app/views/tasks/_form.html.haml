@@ -19,9 +19,10 @@
           = form.text_area :description, size: "40x10", class: "form-control" 
       .form-group
         .col-md-1.col-md-offset-1
-          = link_to('Tiempo manual', 'javascript:;', class: "js-link-hours")
+          = link_to(I18n.t("tasks.manual_time_link"), 'javascript:;', class: "js-link-hours", data: {link_manual: I18n.t("tasks.manual_time_link"), 
+          link_auto: I18n.t("tasks.auto_time_link"), submit_auto: I18n.t("tasks.submit_auto"), submit_manual: I18n.t("tasks.submit_manual")})
         .col-md-5
-          = form.text_field :text_hours, class: "hidden js-hours-field"
+          = form.text_field :text_hours, class: "hidden js-hours-field", placeholder: I18n.t("tasks.manual_time_placeholder")
           = form.text_field :hours, class: "hidden js-hours-hidden-field"
         .col-md-3
           = form.submit "Submit", class: "btn btn-success btn-lg pull-right btn-block"
