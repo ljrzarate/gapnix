@@ -1,5 +1,5 @@
 class Users::CategoriesController < ApplicationController
-    before_action :get_category, only: [:update]
+    before_action :get_category, only: [:update, :edit]
 
     add_breadcrumb I18n.t("projects.title"), :user_projects_path
     add_breadcrumb I18n.t("categories.title"), :user_project_categories_path
@@ -28,6 +28,8 @@ class Users::CategoriesController < ApplicationController
     end
 
     def edit
+      # This is loading a @category instance variable, that is assign
+      # in a before_action
     end
 
     def update

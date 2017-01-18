@@ -7,6 +7,7 @@ class Task < ApplicationRecord
   belongs_to :category
   belongs_to :project
   belongs_to :user
+  has_many :task_times
 
   # Validations
   validates :description, presence: true

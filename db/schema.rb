@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102014628) do
+ActiveRecord::Schema.define(version: 20170118021259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,14 +33,24 @@ ActiveRecord::Schema.define(version: 20161102014628) do
     t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
   end
 
+  create_table "task_times", force: :cascade do |t|
+    t.boolean  "is_active",  default: false, null: false
+    t.datetime "start_date",                 null: false
+    t.datetime "end_time",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "task_id"
+    t.float    "hours",      default: 0.0,   null: false
+    t.index ["task_id"], name: "index_task_times_on_task_id", using: :btree
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string   "description"
-    t.integer  "project_id",                  null: false
-    t.integer  "category_id",                 null: false
+    t.integer  "project_id"
+    t.integer  "category_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "billable",    default: false, null: false
-    t.float    "hours",       default: 0.0,   null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
@@ -75,5 +85,6 @@ ActiveRecord::Schema.define(version: 20161102014628) do
 
   add_foreign_key "categories", "projects"
   add_foreign_key "projects", "users"
+  add_foreign_key "task_times", "tasks"
   add_foreign_key "tasks", "users"
 end
