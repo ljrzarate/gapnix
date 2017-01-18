@@ -6,3 +6,17 @@ en:
     new: "New"
     edit: "Edit"
     
+    created: "Project created!"
+    updated: "Project updated!"
+    deleted: "Project deleted!"
+    no_projects_validation: "you have not created any projects yet"
+  tasks:
+    created: "Task created!"
+    deleted: "Task deleted!"
+  categories:
+    created: "Category created!"
+    updated: "Category updated!"
+    deleted: "Category deleted!"
+    no_categories_validation: "you have not created any categories for this project yet"
+  auth: 
+    email_not_authorized: "Sorry, we just accept GrowthAccelerationPartner members, please try again with a GAP email"

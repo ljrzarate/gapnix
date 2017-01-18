@@ -1,0 +1,20 @@
+.content
+  .row
+    .box
+      .box-header
+        %h3.box-title
+          = "List of Tasks #{get_begin_end_week_format}"
+          .box-tools
+      .box-body.table-responsive.no-padding
+        %table.table.table-hover
+          %tbody
+            %tr
+              %th Created
+              %th Project
+              %th Category
+              %th Description
+              %th Hours
+            = render partial: "task", collection: tasks
+      .box-footer.clearfix
+        = render "shared/pagination", list: tasks
+

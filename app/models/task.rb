@@ -11,6 +11,7 @@ class Task < ApplicationRecord
   # Validations
   validates :description, presence: true
   validates_length_of :description, minimun: 50, maximum: 500 
+  validates :hours, presence: true
 
   # Scopes
   #scope :current_user, ->(user) {  where(user_id: user.id) }
@@ -33,7 +34,7 @@ class Task < ApplicationRecord
   def self.get_current_week_tasks
     where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week)
   end
-  
+
   def created_at_day_name
     self.created_at.strftime("%A")
   end
