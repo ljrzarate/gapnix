@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118021259) do
+ActiveRecord::Schema.define(version: 20170121014422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,14 @@ ActiveRecord::Schema.define(version: 20170118021259) do
   end
 
   create_table "task_times", force: :cascade do |t|
-    t.boolean  "is_active",  default: false, null: false
-    t.datetime "start_date",                 null: false
-    t.datetime "end_time",                   null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "is_active",       default: false, null: false
+    t.datetime "start_date",                      null: false
+    t.datetime "end_time",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "task_id"
-    t.float    "hours",      default: 0.0,   null: false
+    t.float    "hours",           default: 0.0,   null: false
+    t.boolean  "sent_to_journyx", default: false
     t.index ["task_id"], name: "index_task_times_on_task_id", using: :btree
   end
 
