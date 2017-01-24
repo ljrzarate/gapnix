@@ -9,5 +9,6 @@ Bundler.require(*Rails.groups)
 module Gapnix
   class Application < Rails::Application
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.autoload_paths << "#{Rails.root}/lib"
   end
 end
