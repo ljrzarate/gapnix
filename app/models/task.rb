@@ -7,12 +7,11 @@ class Task < ApplicationRecord
   belongs_to :category
   belongs_to :project
   belongs_to :user
-  has_many :task_times
+  has_many :task_times, dependent: :destroy
 
   # Validations
   validates :description, presence: true
-  validates_length_of :description, minimun: 50, maximum: 500 
-  validates :hours, presence: true
+  validates_length_of :description, minimun: 50, maximum: 500
 
   # Scopes
   #scope :current_user, ->(user) {  where(user_id: user.id) }
@@ -21,7 +20,7 @@ class Task < ApplicationRecord
 
   # Class methods
   def self.billable_hours(user, billable = true)
-    current_weekly(user.id).is_billable?(billable).sum(:hours)
+    #current_weekly(user.id).is_billable?(billable).sum(:hours)
   end
 
   def self.unibillable_hours(user)

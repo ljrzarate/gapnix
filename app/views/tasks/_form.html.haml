@@ -25,4 +25,4 @@
           = form.text_field :text_hours, class: "hidden js-hours-field", placeholder: I18n.t("tasks.manual_time_placeholder")
           = form.text_field :hours, class: "hidden js-hours-hidden-field"
         .col-md-3
-          = form.submit "Submit", class: "btn btn-success btn-lg pull-right btn-block"
+          = form.submit I18n.t("tasks.submit_auto"), class: "btn btn-success btn-lg pull-right btn-block", id: "submit-task"
