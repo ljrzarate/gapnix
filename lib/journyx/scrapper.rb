@@ -10,7 +10,7 @@ module Journyx
     def initialize()
       @username = "luisrodriguez" #username
       @password = "firstdjsnip" #password
-      @project  = "EAB: Grades First"
+      #@project  = "EAB: Grades First"
     end
 
     def get_data
@@ -29,6 +29,7 @@ module Journyx
         css("td[id^=idMainTable]").
         last
 
+      binding.pry
       task_description.css("input").first["value"] = "hola"
 
       task_time =
@@ -38,14 +39,14 @@ module Journyx
         css("input").first
 
       task_time["value"] = "8:30"
-
+      binding.pry
       # task_project_select_name =
       #   page.
       #   css("#idMainTableLeftbody .rowtype_New").
       #   css("td[id^=idMainTable]")[0].
       #   css("select").first["name"]
 
-      #time_sheet_form = page.form_with(name: "persist_form")
+      time_sheet_form = page.form_with(name: "persist_form")
 
       # time_sheet_form.
       #   field_with(name: task_project_select_name).options.each do |option|
