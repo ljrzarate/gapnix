@@ -1,0 +1,7 @@
+en:
+  tasks:
+    auto_time_link: "Change to: Automatic time"
+    manual_time_link: "Change to: Type time"
+    manual_time_placeholder: "Manual time"
+    submit_auto: "Save and start counting..."
+    submit_manual: "Save task"

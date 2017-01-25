@@ -205,7 +205,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  breadcrumbs_on_rails
+  breadcrumbs_on_rails (= 3.0.1)
   byebug
   coffee-rails (~> 4.2)
   devise

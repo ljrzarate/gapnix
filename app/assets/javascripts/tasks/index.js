@@ -1,38 +1,45 @@
 Gapnix.views.tasksIndex = (function () {
 
-    function change_time_type(){
-        var link_to = $(".js-link-hours");
+  function change_time_type() {
+    var link_to = $(".js-link-hours");
 
-        link_to.on("click", function(){
-            var hidden = $(".js-hours-field");
-            hidden.toggleClass("hidden");
-            if(link_to.text() == "Tiempo manual" ){
-                link_to.text("Tiempo automatico")
-            }
-            else{
-                link_to.text("Tiempo manual")
-            }    
-        });
-    }
+    link_to.on("click", function () {
+      var hidden = $(".js-hours-field");
+      hidden.toggleClass("hidden");
 
-    function on_changed_time(){
-        var time_field = $(".js-hours-field");
-        var hidden_time_field = $(".js-hours-hidden-field");
+      var autoTimeStr = link_to.data("link-auto");
+      var manualTimeStr = link_to.data("link-manual");
+      var submitInput = $("#submit-task");
 
-        time_field.on("change", function(){
-            hidden_time_field.val(filterTimeFormat(time_field.val()));
-            time_field.val(Gapnix.helpers.changeHourFormat(hidden_time_field.val()));
-        });        
-    }
+      if (link_to.text() == manualTimeStr) {
+        link_to.text(autoTimeStr);
+        submitInput.val(link_to.data("submit-manual"));
+      }
+      else {
+        link_to.text(manualTimeStr);
+        submitInput.val(link_to.data("submit-auto"));
+      }
+    });
+  }
 
-    function init(){
-      change_time_type();
-      on_changed_time();
-    }
+  function on_changed_time() {
+    var time_field = $(".js-hours-field");
+    var hidden_time_field = $(".js-hours-hidden-field");
 
-    return{
-        init: init
-    }
+    time_field.on("change", function () {
+      hidden_time_field.val(filterTimeFormat(time_field.val()));
+      time_field.val(Gapnix.helpers.changeHourFormat(hidden_time_field.val()));
+    });
+  }
+
+  function init() {
+    change_time_type();
+    on_changed_time();
+  }
+
+  return {
+    init: init
+  }
 
 })();
 
