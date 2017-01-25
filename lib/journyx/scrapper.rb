@@ -6,15 +6,17 @@ require 'mechanize'
 module Journyx
   class Scrapper
     JOURNYX_URL = "https://growthaccel.apps.journyx.com/jtcgi/wte.pyc"
-    attr_reader :username, :password, :project
+    attr_reader :username, :password, :project, :page
     def initialize()
       @username = "luisrodriguez" #username
       @password = "firstdjsnip" #password
-      #@project  = "EAB: Grades First"
+      @project  = "EAB: Grades First"
+      @page     = nil
     end
 
     def get_data
       agent = Mechanize.new
+      agent.history_added = Proc.new { sleep 0.5 }
       page = agent.get(JOURNYX_URL)
       login_form = page.form('a')
       login_form['wtusername'] = @username
@@ -29,7 +31,6 @@ module Journyx
         css("td[id^=idMainTable]").
         last
 
-      binding.pry
       task_description.css("input").first["value"] = "hola"
 
       task_time =
@@ -39,21 +40,23 @@ module Journyx
         css("input").first
 
       task_time["value"] = "8:30"
-      binding.pry
-      # task_project_select_name =
-      #   page.
-      #   css("#idMainTableLeftbody .rowtype_New").
-      #   css("td[id^=idMainTable]")[0].
-      #   css("select").first["name"]
+
+      task_project_select_name =
+        page.
+        css("#idMainTableLeftbody .rowtype_New").
+        css("td[id^=idMainTable]")[0].
+        css("select").first["name"]
 
       time_sheet_form = page.form_with(name: "persist_form")
 
-      # time_sheet_form.
-      #   field_with(name: task_project_select_name).options.each do |option|
-      #     if option.text.downcase.strip == project.downcase.strip
-      #       option.click
-      #     end
-      #   end
+      option_seleted = time_sheet_form.
+        field_with(name: task_project_select_name).options.each do |option|
+          if option.text.downcase.strip == project.downcase.strip
+            option.click
+          end
+        end
+
+      time_sheet_form = page.form_with(name: "persist_form")
 
       save_button = time_sheet_form.button_with(id: "enterAction")
       agent.submit(time_sheet_form, save_button)
