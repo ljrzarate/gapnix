@@ -9,7 +9,7 @@ class TaskTimeService
       ActiveRecord::Base.transaction do
         task = current_user.tasks.new(params)
         if @task.save
-          startTask()
+          startTask(task.id, params.startDate)
         else
           #implement
         end
@@ -17,7 +17,11 @@ class TaskTimeService
     end
   end
 
-  def startTask(startDate)
-    
+  def startTask(task_id, start_date)
+    ActiveRecord::Base.transaction do
+      TaskTimes.where("task_id = ?", task_id).update_all(is_active: false)
+      @existing_task = TaskTime.where("task_id = ? AND start_date::date = ?", task_id, start_date.to_date)
+
+    end
   end
 end
