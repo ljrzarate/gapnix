@@ -2,65 +2,62 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'mechanize'
+require 'phantom_mechanize'
+
+require 'selenium-webdriver'
+require 'phantomjs'
+require 'watir'
 
 module Journyx
   class Scrapper
     JOURNYX_URL = "https://growthaccel.apps.journyx.com/jtcgi/wte.pyc"
-    attr_reader :username, :password, :project, :page
-    def initialize()
-      @username = "luisrodriguez" #username
-      @password = "firstdjsnip" #password
-      @project  = "EAB: Grades First"
-      @page     = nil
+    attr_reader :username, :password, :project, :page, :category
+    def initialize(params = {})
+      @username = params.fetch(:username)
+      @username = params.fetch(:password)
+      @username = params.fetch(:project)
+      @username = params.fetch(:category)
     end
 
-    def get_data
-      agent = Mechanize.new
-      agent.history_added = Proc.new { sleep 0.5 }
-      page = agent.get(JOURNYX_URL)
-      login_form = page.form('a')
-      login_form['wtusername'] = @username
-      login_form['wtpassword'] = @password
+    def post_data
+      browser = Watir::Browser.new :phantomjs
+      browser.window.maximize
+      browser.goto "https://growthaccel.apps.journyx.com/jtcgi/wte.pyc?TE=1&"
 
-      puts "Logging in as #{username}"
-      page = agent.submit login_form
+      #Login
+      browser.text_field(name: "wtusername").set(username)
+      browser.text_field(name: "wtpassword").set(password)
 
-      task_description =
-        page.
-        css("#idMainTableLeftbody .rowtype_New").
-        css("td[id^=idMainTable]").
-        last
+      browser.form(name: "a").submit
 
-      task_description.css("input").first["value"] = "hola"
+      left_table = browser.tbody(id: "idMainTableLeftbody")
+      description_row = left_table.tr(class: "rowtype_New").tds.last
+      description_row.text_fields.first.set("Hola 2")
 
-      task_time =
-        page.
-        css("#idMainTableRightCell .rowtype_New").
-        css("td[id^=idMainTable]")[2].
-        css("input").first
+      project_row = left_table.tr(class: "rowtype_New").tds.first
 
-      task_time["value"] = "8:30"
-
-      task_project_select_name =
-        page.
-        css("#idMainTableLeftbody .rowtype_New").
-        css("td[id^=idMainTable]")[0].
-        css("select").first["name"]
-
-      time_sheet_form = page.form_with(name: "persist_form")
-
-      option_seleted = time_sheet_form.
-        field_with(name: task_project_select_name).options.each do |option|
-          if option.text.downcase.strip == project.downcase.strip
-            option.click
-          end
+      project_row.select_lists.first.options.each do |option|
+        if option.text.downcase.strip == project.downcase.strip
+          option.click
         end
+      end
+      sleep 3
+      category_row = left_table.tr(class: "rowtype_New").tds[1]
+      category_row.select_lists.first.options.each do |option|
+        if option.text.downcase.strip == category.downcase.strip
+          option.click
+        end
+      end
 
-      time_sheet_form = page.form_with(name: "persist_form")
+      right_table = browser.tbody(id: "idMainTableRightbody")
+      hour_row = right_table.tr(class: "rowtype_New").tds[2]
+      hour_row.text_fields.first.set("9:30")
 
-      save_button = time_sheet_form.button_with(id: "enterAction")
-      agent.submit(time_sheet_form, save_button)
+      save_button = browser.input(id: "enterAction")
 
+      save_button.click
+
+      browser.close
     end
   end
 end

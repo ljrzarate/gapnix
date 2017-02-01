@@ -38,6 +38,10 @@ gem 'will_paginate-bootstrap'
 
 gem 'pg'
 gem 'mechanize'
+gem 'phantomjs'
+gem 'phantom_mechanize'
+gem 'selenium-webdriver'
+gem 'watir'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
