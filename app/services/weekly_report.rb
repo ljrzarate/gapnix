@@ -7,4 +7,8 @@ class WeeklyReport
   def fetch
     Task.weekly_current_task(current_user)
   end
+
+  def getTaskAndTaskTimes
+    Task.get_current_week_tasks_taskTimes (current_user)
+  end
 end

@@ -19,4 +19,8 @@ Rails.application.routes.draw do
   namespace :reports do
     resource :weekly_reports, only: :show
   end
+
+  namespace :exports do
+    resource :timesheet_exports, only: [:show, :create]
+  end
 end

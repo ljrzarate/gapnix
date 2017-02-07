@@ -1,0 +1,15 @@
+%tr
+  %td
+    %input{type:"checkbox", class:"chkTask", value: "#{task.id}" }/
+  %td
+    = task.project.name
+  %td
+    = task.description
+  %td
+    = task.billable
+  %td
+    %table.table.table-hover
+      %tbody
+        %tr
+          - ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].each do |wday|
+            = render partial: "exports/timesheet_exports/task_times", locals: {wday: wday, task_times: task.task_times}
