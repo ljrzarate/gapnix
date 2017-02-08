@@ -9,7 +9,7 @@ require 'phantomjs'
 require 'watir'
 
 module Journyx
-  class Scrapper
+  class PublishSingleTask
     JOURNYX_URL = "https://growthaccel.apps.journyx.com/jtcgi/wte.pyc?TE=1&"
 
     attr_reader :username, :password, :project, :category, :browser, :description
@@ -21,6 +21,7 @@ module Journyx
       @category    = params.fetch(:category)
       @description = params.fetch(:description)
       @hours       = params.fetch(:hours)
+      @wday        = params.fetch(:wday)
       init_browser
     end
 

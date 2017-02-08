@@ -46,4 +46,13 @@ class Task < ApplicationRecord
   def created_at_date
     self.created_at.strftime("%d-%m-%Y")
   end
+
+  def project_name
+    self.project.name
+  end
+
+  def category_name
+    self.category.name
+  end
+ 
 end
