@@ -2,12 +2,6 @@ Gapnix.views.exportsShow = (function () {
 
 
   $( "input[type=checkbox]" ).on( "click", get_checkedItems )
-
-//   function showalert()
-//   {
-//       alert ('as');
-//   }
-
     function get_checkedItems() {
         var hiddenField = $('.hiddenField')
         var checkedItems = $('.table tr td .chkTask:checked');
@@ -25,8 +19,21 @@ Gapnix.views.exportsShow = (function () {
     }
 
 
+    function getUsernameAndPassword(){
+        $("body").on("click", ".js-journyx-send-bottom", function(){
+            var modalName = $("#name");
+            $("#password").prop("type", "text");
+            var modalPassword = $("#password");            
+            $(".js-journyx-password").val(modalName.val());
+            $(".js-journyx-password").val(modalPassword.val());
+
+            $(".js-submit-form").submit();
+        });
+    }
+
+
     function init() {
-        //nothing for now to execute at the begginning
+        getUsernameAndPassword();
     }
 
     return {

@@ -1,10 +1,12 @@
 # t = TimesheetExport.new(User.first, [1,3,4])
 class TimesheetExport
-    attr_reader :current_user, :tasks
+    attr_reader :current_user, :tasks, :journyx_username, :journyx_password
 
-    def initialize (current_user, task_ids)
-        @current_user = current_user
-        @tasks = current_user.tasks.find(task_ids) 
+    def initialize (options = {})
+        @current_user = options.fetch(:current_user)
+        @tasks = current_user.tasks.find(options.fetch(:task_ids))
+        @journyx_username = options.fetch(:journyx_username) 
+        @journyx_password = options.fetch(:journyx_password) 
     end
 
 
@@ -30,7 +32,11 @@ class TimesheetExport
         resp << task_hash
       end
       resp
-      Journyx::PublishMultipleTask.new(resp).publish
+      Journyx::PublishMultipleTask.new(
+        resp, 
+        journyx_username, 
+        journyx_password
+      ).publish
     end
 
     def get_task_times_attributes(task)      

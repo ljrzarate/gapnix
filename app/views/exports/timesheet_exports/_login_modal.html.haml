@@ -1,0 +1,18 @@
+#login-modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Login in Journyx
+      .modal-body
+        .col-lg-6.col-md-6.col-sm-6.col-xs-12
+          .form-group
+            %input#name.form-control{:name => "name", :placeholder => "Your username...", :required => "", :type => "text"}/
+        .col-lg-6.col-md-6.col-sm-6.col-xs-12.pad-l-3
+          .form-group.contact-field
+            %input#password.form-control{:name => "email", :placeholder => "Your password...", :required => "", :type => "password"}/
+
+      .modal-footer
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary.js-journyx-send-bottom{:type => "button"} Send tasks

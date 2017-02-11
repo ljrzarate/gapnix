@@ -7,13 +7,22 @@ require 'phantom_mechanize'
 require 'selenium-webdriver'
 require 'phantomjs'
 require 'watir'
-
+# Journyx::PublishSingleTask.new.post_data
 module Journyx
   class PublishSingleTask
-    JOURNYX_URL = "https://growthaccel.apps.journyx.com/jtcgi/wte.pyc?TE=1&"
+    JOURNYX_URL = 'https://growthaccel.apps.journyx.com/jtcgi/jtgui.pyc?Default_Name=Go&dotime=1&gotodate=20170213'
+    #"https://growthaccel.apps.journyx.com/jtcgi/wte.pyc?TE=1&"
 
-    attr_reader :username, :password, :project, :category, :browser, :description
-
+    attr_reader :username, :password, :project, :category, :browser, :description, :hours, :wday
+    WEEK_DAYS_HASH = {
+      saturday: 0,
+      sunday: 1,
+      monday: 2,
+      tuesday: 3,
+      wednesday: 4,
+      thursday: 5,
+      friday: 6
+    }
     def initialize(params = {})
       @username    = params.fetch(:username)
       @password    = params.fetch(:password)
@@ -21,7 +30,7 @@ module Journyx
       @category    = params.fetch(:category)
       @description = params.fetch(:description)
       @hours       = params.fetch(:hours)
-      @wday        = params.fetch(:wday)
+      @wday        = params.fetch(:wday).downcase.to_sym
       init_browser
     end
 
@@ -29,7 +38,7 @@ module Journyx
       login
       set_description
       set_project
-      sleep 3
+      sleep 1
       set_category
       set_hours
       submit_form
@@ -78,7 +87,7 @@ module Journyx
 
     def set_hours
       right_table = browser.tbody(id: "idMainTableRightbody")
-      hour_row = right_table.tr(class: "rowtype_New").tds[2]
+      hour_row = right_table.tr(class: "rowtype_New").tds[WEEK_DAYS_HASH[wday]]
       hour_row.text_fields.first.set(hours)
     end
 

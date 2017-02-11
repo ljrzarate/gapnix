@@ -1,15 +1,18 @@
 module Journyx
   class PublishMultipleTask
-    attr_reader :task_object
-     example = [{:description=>"myTaskDesc1", :project=>"myPry1", :category=>"myCateg1", :times=>[{:hours=>0.0, :wday=>"Tuesday"}, {:hours=>0.0, :wday=>"Wednesday"}]}, {:description=>"fsdf", :project=>"myPry1", :category=>"myCateg1", :times=>[{:hours=>0.0, :wday=>"Tuesday"}, {:hours=>0.0, :wday=>"Wednesday"}]}, {:description=>"ggggssgs", :project=>"myPry1", :category=>"myCateg1", :times=>[{:hours=>0.0, :wday=>"Tuesday"}]}]
-    def initialize(task_object)
+    attr_reader :task_object, :username, :password
+    def initialize(task_object, username, password)
       @task_object = task_object
+      @username = username
+      @password = password
     end
 
     def publish
       task_object.each do |task|
         task[:times].each do |time|
-          param = {
+          params = {
+            username: username,#"yhormanperez",
+            password: password,#"DiasExtremos1412",
             project: task[:project],
             category: task[:category],
             description: task[:description],
