@@ -12,11 +12,11 @@ class Exports::TimesheetExportsController < ApplicationController
       binding.pry
       @resultSet = TimesheetExport.new(
         current_user: current_user,
-        ids_tasks: @ids_tasks,
-        journyx_username: params[:journyx_username],
-        journyx_password: params[:journyx_password]
+        task_ids: @ids_tasks,
+        journyx_username: params[:exports][:journyx_username],
+        journyx_password: params[:exports][:journyx_password]
       ).export
     end
 
 end
-# https://growthaccel.apps.journyx.com/jtcgi/jtgui.pyc?jxtcprn=227463
+# Shttps://growthaccel.apps.journyx.com/jtcgi/jtgui.pyc?jxtcprn=227463

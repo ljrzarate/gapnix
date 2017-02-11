@@ -24,6 +24,7 @@ module Journyx
       friday: 6
     }
     def initialize(params = {})
+      binding.pry
       @username    = params.fetch(:username)
       @password    = params.fetch(:password)
       @project     = params.fetch(:project)
@@ -59,7 +60,11 @@ module Journyx
     end
 
     def set_description
+      puts "Seting description " * 90
+      binding.pry
       left_table = browser.tbody(id: "idMainTableLeftbody")
+      puts left_table
+      puts "Seting description end" * 90
       description_row = left_table.tr(class: "rowtype_New").tds.last
       description_row.text_fields.first.set(description)
     end

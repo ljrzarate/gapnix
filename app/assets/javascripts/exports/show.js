@@ -24,7 +24,7 @@ Gapnix.views.exportsShow = (function () {
             var modalName = $("#name");
             $("#password").prop("type", "text");
             var modalPassword = $("#password");            
-            $(".js-journyx-password").val(modalName.val());
+            $(".js-journyx-name").val(modalName.val());
             $(".js-journyx-password").val(modalPassword.val());
 
             $(".js-submit-form").submit();
