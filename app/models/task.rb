@@ -17,7 +17,7 @@ class Task < ApplicationRecord
   #scope :current_user, ->(user) {  where(user_id: user.id) }
   scope :current_weekly, ->(user_id) {  where("created_at >= ? AND created_at <= ? AND user_id = ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week, user_id) }
   scope :weekly_current_task, ->(user) { current_weekly(user.id) }
-
+  
   # Class methods
   def self.billable_hours(user, billable = true)
     #current_weekly(user.id).is_billable?(billable).sum(:hours)
@@ -31,6 +31,10 @@ class Task < ApplicationRecord
     where(billable: value)
   end
 
+  def self.get_current_week_tasks_taskTimes(user)
+    user.tasks.includes(:task_times, :project)
+  end
+
   def self.get_current_week_tasks
     where("created_at >= ? AND created_at <= ?", Date.current.at_beginning_of_week, Date.current.at_end_of_week)
   end
@@ -42,4 +46,13 @@ class Task < ApplicationRecord
   def created_at_date
     self.created_at.strftime("%d-%m-%Y")
   end
+
+  def project_name
+    self.project.name
+  end
+
+  def category_name
+    self.category.name
+  end
+ 
 end

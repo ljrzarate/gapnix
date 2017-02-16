@@ -1,0 +1,36 @@
+= render "exports/timesheet_exports/login_modal"
+.content
+  .row
+    .box
+      .box-header
+        %h3.box-title
+          = "Timeshee to Export #{get_begin_end_week_format}"
+          .box-tools
+      .box-body.table-responsive.no-padding
+        %table.table.table-hover
+          %tbody
+            %tr
+              %td 
+              %td Project
+              %td Description
+              %td Billable
+            =   render partial: "exports/timesheet_exports/task", collection: @tasks
+      .box-footer.clearfix
+      = form_for 'exports', url: exports_timesheet_exports_path, method: :post,  html: {class: " box-footer clearfix  center js-submit-form"}   do |form|
+        .form-group
+          = form.text_field :tasks_ids, class: " hidden hiddenField"
+          = form.text_field :journyx_username, class: " hidden js-journyx-name"
+          = form.text_field :journyx_password, class: " hidden js-journyx-password"
+          .col-md-2
+            = link_to "Export", "javascript:;", {data: {toggle: "modal", target: "login-modal"}}
+
+            %button.btn.btn-primary.btn-lg{"data-target" => "#login-modal", "data-toggle" => "modal", :type => "button"}
+              Export to journyx
+
+
+            =#form.button "Export", class: "btn btn-success btn-lg pull-right btn-block", data: {toggle: "modal", target: "login-modal"}
+= javascript_include_tag 'exports/show.js'
+          
+
+        
+

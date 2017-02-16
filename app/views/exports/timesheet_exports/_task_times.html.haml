@@ -1,0 +1,25 @@
+- task_time = task_times.select {|task_time| task_time.start_date.strftime("%A") == wday  }.first
+
+- if task_time
+  %td.width140
+    .col-md-12
+      .box.box-success.box-solid
+        .box-header.with-border.title-blue
+          %h3.box-title 
+            = wday
+        .box-body.personalized-body
+          = task_time.hours
+- else
+  %td.width140
+    .col-md-12
+      .box.box-success.box-solid
+        .box-header.with-border.title-grey  
+          %h3.box-title 
+            = wday
+        .box-body.personalized-body
+          0 
+       
+        
+
+            
+
